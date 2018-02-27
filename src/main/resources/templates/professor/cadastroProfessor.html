@@ -12,12 +12,12 @@
 		</div>
 		
 		<div class="panel-body">
-			<th:block layout:insert="~{/layout/fragmentos/alertas :: success}"></th:block>
+			<th:block layout:insert="~{layout/fragmentos/alertas :: success}"></th:block>
 
 			<form method="post" class="form-vertical  js-form-loading"
 				th:object="${professor}" th:action="@{/professores/novoProfessor}">
 				
-				<th:block layout:insert="~{/layout/fragmentos/alertas :: validation}"></th:block>
+				<th:block layout:insert="~{layout/fragmentos/alertas :: validation}"></th:block>
 													
 				<input type="hidden" th:field="*{codigo}"/>
 				
@@ -51,7 +51,7 @@
 					</div>
 				</div>
 				
-				<th:block layout:insert="~{/layout/fragmentos/selects :: titulo}"></th:block>
+				<th:block layout:insert="~{layout/fragmentos/selects :: titulo}"></th:block>
 															
 				<div class="col-xs-12 col-sm-3 col-md-3">
 					<div class="form-group" th:classappend="${#fields.hasErrors('admissao')} ? has-error">
@@ -69,7 +69,7 @@
 					</div>
 				</div>
 				
-				<th:block layout:insert="~{/layout/fragmentos/selects :: status}"></th:block>
+				<th:block layout:insert="~{layout/fragmentos/selects :: status}"></th:block>
 				
 				<div class="col-xs-12 col-sm-4 col-md-4">
 					<div class="form-group" th:classappend="${#fields.hasErrors('celular')} ? has-error">

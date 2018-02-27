@@ -19,7 +19,7 @@
 				<form method="post" class="form-vertical  js-form-loading" enctype="multipart/form-data"
 					th:object="${curso}" th:action="@{/cursos/novo}">
 					
-					<th:block layout:insert="~{/layout/fragmentos/alertas :: validation}"></th:block>
+					<th:block layout:insert="~{layout/fragmentos/alertas :: validation}"></th:block>
 														
 					<input type="hidden" th:field="*{id}"/>
 					

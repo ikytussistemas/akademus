@@ -15,12 +15,12 @@
 		<div class="panel-body">
 			<div class="container-fluid">
 				
-				<th:block layout:insert="~{/layout/fragmentos/alertas :: success}"></th:block>
+				<th:block layout:insert="~{layout/fragmentos/alertas :: success}"></th:block>
 				
 				<form method="post" class="form-vertical  js-form-loading" th:object="${turmaEstagio}"
 					th:action="@{/turmas_estagio/novo}"	>
 					
-					<th:block layout:insert="~{/layout/fragmentos/alertas :: validation}"></th:block>
+					<th:block layout:insert="~{layout/fragmentos/alertas :: validation}"></th:block>
 					
 					<input type="hidden" th:field="*{id}"/>
 					
