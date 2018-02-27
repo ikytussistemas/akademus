@@ -2,10 +2,10 @@ package com.ikytus.ak.domain;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 import javax.persistence.MappedSuperclass;
 
 import org.springframework.util.StringUtils;
@@ -19,7 +19,7 @@ public class AbstractEntity implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 		
-	@Lob
+	@Column (columnDefinition = "text")
 	private String img;
 		
 	public AbstractEntity() {
