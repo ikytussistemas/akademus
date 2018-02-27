@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org"
+	layout:decorate="~{layout/LayoutPadrao}">
+
+<section layout:fragment="conteudo">
+	<div class="panel panel-primary">
+
+		<div class="panel-heading sombra">
+			<h2 class="panel-title text-center">
+				<strong>upload arquivos</strong>
+			</h2>
+		</div>
+
+		<div class="panel-body">
+			<div class="container-fluid">
+
+				<th:block layout:insert="~{/layout/fragmentos/alertas :: success}"></th:block>
+
+				<form method="post" class="form-vertical  js-form-loading"
+					enctype="multipart/form-data" th:action="@{/testes/gravarcsv}">
+					<input type="file" name="file" />
+					<button class="btn  btn-success btn-xs" type="submit">text
+						arquivo</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</section>
+<th:block layout:fragment="javascript-extra">
+	<script th:src="@{/layout/javascripts/jquery.mask.min.js}"></script>
+	<script type="text/javascript">
+		
+	</script>
+	<script th:src="@{/layout/js/VisualizarImagem.js}"></script>
+</th:block>
+</html>
