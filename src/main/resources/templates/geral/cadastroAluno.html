@@ -57,9 +57,13 @@
 							</div>
 						</div>
 						<div class="col-xs-12 col-sm-2 col-md-2">
-							<div class="form-group input-group-sm" th:classappend="${#fields.hasErrors('semestre')} ? has-error">
-								<label for=sem class="input-group-addon control-label">Semestre</label>
-								<input id="sem" type="text" class="form-control text-center" th:field="*{semestre}" />
+							<div class="form-group" th:classappend="${#fields.hasErrors('semestre')} ? has-error">
+								<label for=ies class="input-group-addon control-label">Semestre</label>
+								<select id="status" class="form-control" th:field="*{semestre}">
+									<option value="">Selecione o semestre</option>
+									<option th:each="semestre : ${semestres}" th:value="${semestre.descricao}"
+										th:text="${semestre.descricao}"></option>
+								</select>
 							</div>
 						</div>
 						

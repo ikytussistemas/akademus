@@ -23,7 +23,6 @@ import com.ikytus.ak.domain.enums.Dia;
 import com.ikytus.ak.domain.enums.Semestres;
 import com.ikytus.ak.domain.enums.TipoEstagio;
 import com.ikytus.ak.dto.Filter;
-import com.ikytus.ak.repositories.TurmaEstagioRepository;
 import com.ikytus.ak.services.TurmaEstagioService;
 import com.ikytus.ak.util.pageable.pageConfig;
 

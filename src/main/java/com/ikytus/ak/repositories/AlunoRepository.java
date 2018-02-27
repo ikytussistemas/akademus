@@ -1,5 +1,7 @@
 package com.ikytus.ak.repositories;
 
+import javax.transaction.Transactional;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.PagingAndSortingRepository;
@@ -10,6 +12,11 @@ import com.ikytus.ak.domain.Aluno;
 @Repository
 public interface AlunoRepository extends PagingAndSortingRepository <Aluno, Long> {
 	
+	@Transactional
+	public Aluno findByEmail(String email);
+	
 	public Page<Aluno>findByNomeContainingIgnoreCase(String nome, Pageable pageable);
+	
+	public Page<Aluno>findByCursoNomeAndSemestreAndNomeContainingIgnoreCase(String curso,String semestre,String nome, Pageable pageable);
 	
 }

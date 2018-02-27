@@ -58,6 +58,10 @@ html,body{
 	overflow: auto;
 }
 
+.container {
+    max-width: 1100px;
+}
+
 @media (min-width:992px){
 	.aw-layout-content.is-toggled{
 		margin-left:0

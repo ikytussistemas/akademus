@@ -3,10 +3,12 @@ package com.ikytus.ak.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -44,6 +46,11 @@ public class TurmaEstagio extends AbstractEntity {
 	private String professor;
 	
 	private String observacao;
+	
+	private Integer vagas;
+	
+	@OneToMany(mappedBy = "turma", cascade=CascadeType.ALL)
+	private List<Estagio> estagios = new ArrayList<>();
 
 	public TurmaEstagio() {
 		super();
@@ -59,6 +66,17 @@ public class TurmaEstagio extends AbstractEntity {
 		this.cargahoraria=cargahoraria;
 		this.professor=professor;
 		this.observacao=observacao;
+	}
+		
+	public Integer getInscricoes() {
+		return estagios.size();
+	}
+	
+	public boolean isLotada() {
+		if(getInscricoes().equals(vagas)) {
+			return true;
+		}
+		return false;
 	}
 
 	public String getSemestre() {
@@ -123,5 +141,21 @@ public class TurmaEstagio extends AbstractEntity {
 
 	public void setObservacao(String observacao) {
 		this.observacao = observacao;
+	}
+
+	public List<Estagio> getEstagios() {
+		return estagios;
+	}
+
+	public void setEstagios(List<Estagio> estagios) {
+		this.estagios = estagios;
+	}
+
+	public Integer getVagas() {
+		return vagas;
+	}
+
+	public void setVagas(Integer vagas) {
+		this.vagas = vagas;
 	}
 }

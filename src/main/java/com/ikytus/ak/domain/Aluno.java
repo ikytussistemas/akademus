@@ -1,11 +1,13 @@
 package com.ikytus.ak.domain;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -13,7 +15,6 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
 
-import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.ikytus.ak.domain.enums.StatusAluno;
 import com.ikytus.ak.domain.enums.TipoUsuario;;
 
@@ -37,8 +38,8 @@ public class Aluno extends Usuario{
 	@NotNull(message="Curso obrigatório")
     private Curso curso;
 	
-	@OneToMany(mappedBy = "aluno", cascade=CascadeType.ALL)
-	private List<Estagio> estagios;
+	@OneToMany(mappedBy = "aluno", fetch=FetchType.EAGER)
+	private List<Estagio> estagios = new ArrayList<>();
 	
 	private Integer status;
 

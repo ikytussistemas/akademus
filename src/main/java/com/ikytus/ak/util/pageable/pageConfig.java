@@ -17,7 +17,7 @@ public class pageConfig {
 	public static final int BUTTONS_TO_SHOW = 5;
 	public static final int INITIAL_PAGE = 0;
 	public static final int INITIAL_PAGE_SIZE = 10;
-	public static final int[] PAGE_SIZES = { 2, 5, 10, 20 };
+	public static final int[] PAGE_SIZES = { 2, 5, 10, 20, 50, 100, 200, 500, 1000 };
 	public int evalPageSize;
 	public int evalPage;
 		

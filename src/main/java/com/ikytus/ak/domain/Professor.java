@@ -11,7 +11,6 @@ import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.ikytus.ak.domain.enums.TipoUsuario;;
 
 @Entity

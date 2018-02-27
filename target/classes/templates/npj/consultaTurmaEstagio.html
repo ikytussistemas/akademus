@@ -57,6 +57,7 @@
 							<th data-label="Horário">Horário</th>
 							<th data-label="Disponível">Disponível</th>
 							<th data-label="Professor">Professor</th>
+							<th data-label="Vagas">Vagas</th>
 							<th class="ik-table-col-icons hidden-xs" sec:authorize="hasRole('ADMIN')"></th>
 						</tr>
 					</thead>
@@ -70,6 +71,7 @@
 							<td class="text-center" th:text="${turma.horario}" data-label="Horário"></td>
 							<td class="text-center" th:text="${turma.disponivel}" data-label="disponível"></td>
 							<td class="text-center" th:text="${turma.professor}" data-label="Turma"></td>
+							<td class="text-center" th:text="${turma.vagas}" data-label="Vagas"></td>
 							<td class="text-center hidden-xs" style="vertical-align: middle;" sec:authorize="hasRole('ADMIN')">
 								<button type="button" class="btn btn-danger btn-xs btn-block btn-active hidden-xs">
 									<i	class="fa fa-trash"	style="cursor: pointer"	
@@ -83,12 +85,12 @@
 							</td>
 						</tr>
 						<tr th:if="${lista.getTotalElements()==0}">
-							<td	colspan="7"	class="bg-danger">Nenhuma turma cadastrada</td>
+							<td	colspan="8"	class="bg-danger">Nenhuma turma cadastrada</td>
 						</tr>
 					</tbody>
 					<tfoot>
 						<tr>
-							<td	colspan="7"	class="bg-primary text-center">
+							<td	colspan="8"	class="bg-primary text-center">
 								<strong><span th:text="'Total de Registros: ' + ${lista.getTotalElements()}"></span></strong>
 							</td>
 						</tr>

@@ -7,8 +7,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.ikytus.ak.domain.Aluno;
 import com.ikytus.ak.domain.Usuario;
+import com.ikytus.ak.repositories.AlunoRepository;
 import com.ikytus.ak.repositories.UsuarioRepository;
 import com.ikytus.ak.util.security.IkUserDetails;
 
@@ -18,7 +18,7 @@ public class UsuarioService implements Serializable {
 
 	@Autowired
 	private UsuarioRepository usuarioRepository;
-	
+		
 	public void salvar(Usuario usuario){
 		usuario.setSenha(new BCryptPasswordEncoder().encode(usuario.getSenha()));
 		usuario.setNome(usuario.getNome().toUpperCase());
@@ -27,15 +27,11 @@ public class UsuarioService implements Serializable {
 	
 	public static IkUserDetails authenticated() {
 		try {
+			System.out.println(SecurityContextHolder.getContext().getAuthentication().getPrincipal());
 			return (IkUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		}
 		catch (Exception e) {
 			return null;
 		}
-	}
-	
-	public Aluno getaluno(){
-		Aluno aluno = (Aluno) usuarioRepository.findByEmail(authenticated().getUsername());
-		return aluno;
 	}
 }

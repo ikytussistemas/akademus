@@ -5,7 +5,6 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
-import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.ikytus.ak.domain.enums.TipoUsuario;;
 
 @Entity

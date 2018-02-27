@@ -24,9 +24,9 @@
 					
 					<input type="hidden" th:field="*{id}"/>
 					
-					<div class="col-xs-12 col-sm-2 col-md-2">
+					<div class="col-xs-12 col-sm-1 col-md-1">
 						<div class="form-group" th:classappend="${#fields.hasErrors('semestre')} ? has-error">
-							<label for=semestre class="input-group-addon control-label">Semestre</label> 
+							<label for=semestre class="input-group-addon control-label">Sem.</label> 
 							<input id="semestre" type="text" class="form-control text-center semestre" th:field="*{semestre}"/>
 						</div>
 					</div>
@@ -61,6 +61,12 @@
 						<div class="form-group" th:classappend="${#fields.hasErrors('cargahoraria')} ? has-error">
 							<label for=cargahoraria class="input-group-addon control-label">C/H</label> 
 							<input id="cargahoraria" type="text" class="form-control ch" th:field="*{cargahoraria}"/>
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-1 col-md-1">
+						<div class="form-group" th:classappend="${#fields.hasErrors('vagas')} ? has-error">
+							<label for=vagas class="input-group-addon control-label">Vagas</label> 
+							<input id="vagas" type="text" class="form-control ch" th:field="*{vagas}"/>
 						</div>
 					</div>
 					

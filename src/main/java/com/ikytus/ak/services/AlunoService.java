@@ -18,7 +18,9 @@ import com.ikytus.ak.domain.enums.Perfil;
 import com.ikytus.ak.domain.enums.TipoUsuario;
 import com.ikytus.ak.repositories.AlunoRepository;
 import com.ikytus.ak.repositories.CursoRepository;
+import com.ikytus.ak.repositories.EstagioRepository;
 import com.ikytus.ak.repositories.TurmaEstagioRepository;
+import com.ikytus.ak.util.Tools;
 import com.ikytus.ak.util.pageable.pageConfig;
 
 @Service
@@ -32,14 +34,18 @@ public class AlunoService implements AbstractService<Aluno> {
 
 	@Autowired
 	private TurmaEstagioRepository turmaEstagioRepository;
-
-	private UsuarioService us;
+	
+	@Autowired
+	private EstagioRepository estagioRepository;
 
 	@Autowired
 	private pageConfig pconfig;
 
 	@Autowired
 	private PasswordEncoder pe;
+	
+	@Autowired
+	private Tools tl;
 
 	public void salvar(Aluno aluno) {
 		setAtributes(aluno);
@@ -57,6 +63,14 @@ public class AlunoService implements AbstractService<Aluno> {
 		return repository.findByNomeContainingIgnoreCase(Optional.ofNullable(nome).orElse("%"),
 				pconfig.showPage(pageSize, page, pageable, Optional.ofNullable(ordem).orElse("nome")));
 	}
+	
+	public Page<Aluno> findByFilter(String curso, String semestre,String nome, Optional<Integer> pageSize, Optional<Integer> page, Pageable pageable,
+			String ordem) {
+		
+		return repository.findByCursoNomeAndSemestreAndNomeContainingIgnoreCase(Optional.ofNullable(curso).orElse("%i%"), Optional.ofNullable(semestre).orElse("%º"), Optional.ofNullable(nome).orElse("%"),
+				pconfig.showPage(pageSize, page, pageable, Optional.ofNullable(ordem).orElse("nome")));
+	}
+	
 
 	public Aluno findOne(Long codigo) {
 		return repository.findOne(codigo);
@@ -85,30 +99,38 @@ public class AlunoService implements AbstractService<Aluno> {
 	public List<Curso> getCursos() {
 		return cursoRepository.findAll();
 	}
+	
+	public Aluno getAlunoLogado() {
+		Aluno aluno = (Aluno) tl.getUsuario();
+		return aluno;
+	}
+	
+	public List<Estagio> getEstagios(){
+		return estagioRepository.findByAluno(getAlunoLogado());
+	}
 
-	public List<TurmaEstagio> getTurmas(Aluno aluno) {
+	public List<TurmaEstagio> getTurmas() {
 		List<TurmaEstagio> turmasSelecionadas = new ArrayList<>();
 		List<String> tipos = new ArrayList<>();
-
-		System.out.println(aluno.getSemestre());
-
-		if (aluno.getSemestre().equals("10º")) {
+	
+		for (Estagio e: getEstagios()) {
+			tipos.add(e.getTurma().getTipoEstagio().getDescricao());
+		}
+		
+		if (getAlunoLogado().getSemestre().equals("10º")) {
+		
 			for (TurmaEstagio t : turmaEstagioRepository.findBySemestre("2018.1")) {
-				for (Estagio e : aluno.getEstagios()) {
-
-					tipos.add(e.getTurma().getTipoEstagio().getDescricao());
-					if (!tipos.contains(t.getTipoEstagio().getDescricao())) {
+				if(!tipos.contains(t.getTipoEstagio().getDescricao())) {
+					if(!t.isLotada()) {
 						turmasSelecionadas.add(t);
 					}
 				}
 			}
 		} else {
 			for (TurmaEstagio t : turmaEstagioRepository.findBySemestre("2018.1")) {
-				if (t.getDisponivel().contains(aluno.getSemestre())) {
-					for (Estagio e : aluno.getEstagios()) {
-
-						tipos.add(e.getTurma().getTipoEstagio().getDescricao());
-						if (!tipos.contains(t.getTipoEstagio().getDescricao())) {
+				if (t.getDisponivel().contains(getAlunoLogado().getSemestre())) {
+					if(!tipos.contains(t.getTipoEstagio().getDescricao())) {
+						if(!t.isLotada()) {
 							turmasSelecionadas.add(t);
 						}
 					}

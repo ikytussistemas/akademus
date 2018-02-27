@@ -5,82 +5,91 @@
 	layout:decorate="~{layout/LayoutPadrao}">
 
 <section layout:fragment="conteudo">
-	<div class="container card">
-		<div class="panel panel-primary">
-			
-			<div class="panel-heading sombra">
-				<h2 class="panel-title text-center"><strong>Cadastro de Estágio</strong></h2>
-			</div>
-			
-			<div class="panel-body">
-				<div class="container-fluid">
 
-					<th:block layout:insert="~{layout/fragmentos/alertas :: success}"></th:block>
-					
-					<form method="post" class="form-vertical  js-form-loading"
-						th:object="${estagio}" th:action="@{/alunos/novo_estagio}">
-						
-						<th:block layout:insert="~{layout/fragmentos/alertas :: validation}"></th:block>
-															
-						<input type="hidden" th:field="*{id}"/>
-						<input type="hidden" th:field="*{aluno}" th:value="${alunoLogado.getId()}"/>
-																							
-						<div class="col-xs-12 col-sm-12 col-md-12">
-							<div class="form-group">
-								<label for=aluno class="input-group-addon control-label">Aluno</label>
-								<input id="aluno" type="text" class="form-control" 
-										th:value="${alunoLogado.getNome()}" disabled="disabled"/>
-							</div>
-						</div>										
-							
-						<div class="col-xs-12 col-sm-3 col-md-3">
-							<div class="form-group" th:classappend="${#fields.hasErrors('turma')} ? has-error">
-								<label for=ies class="input-group-addon control-label">Turma</label>
-								<select id="tipoEstagio" class="form-control" th:field="*{turma}">
-									<option value="">Selecione a turma</option>
-									<option th:each="turma : ${turmas}" th:value="${turma.id}"
-										th:text="|${turma.tipoEstagio} - ${turma.horario}|"></option>
-								</select>
-							</div>
+	<div class="panel panel-primary">
+
+		<div class="panel-heading sombra">
+			<h2 class="panel-title text-center">
+				<strong>Cadastro de Estágio</strong>
+			</h2>
+		</div>
+
+		<div class="panel-body">
+			<div class="container-fluid">
+
+				<th:block layout:insert="~{layout/fragmentos/alertas :: success}"></th:block>
+
+				<form method="post" class="form-vertical  js-form-loading"
+					th:object="${estagio}" th:action="@{/alunos/novo_estagio}">
+
+					<th:block
+						layout:insert="~{layout/fragmentos/alertas :: validation}"></th:block>
+
+					<input type="hidden" th:field="*{id}" /> <input type="hidden"
+						th:field="*{aluno}" th:value="${alunoLogado.getId()}" />
+
+					<div class="col-xs-12 col-sm-12 col-md-12">
+						<div class="form-group">
+							<label for=aluno class="input-group-addon control-label">Aluno</label>
+							<input id="aluno" type="text" class="form-control"
+								th:value="${alunoLogado.getNome()}" disabled="disabled" />
 						</div>
-											
-						<div class="col-xs-12 col-sm-3 col-md-3">
-							<div class="form-group" th:classappend="${#fields.hasErrors('datainscricao')} ? has-error">
-								<label for=datainscricao class="input-group-addon control-label">Data Inscrição</label>
-								<input id="datainscricao" type="text" class="form-control text-center" th:field="*{datainscricao}"
-									   data-provide="datepicker" data-format="dd/mm/yyyy" data-date-language="pt-BR"
-									   data-date-autoclose="true" data-date-today-Highlight="true" disabled="disabled"/>
-							</div>
+					</div>
+
+					<div class="col-xs-12 col-sm-3 col-md-3">
+						<div class="form-group"
+							th:classappend="${#fields.hasErrors('turma')} ? has-error">
+							<label for=ies class="input-group-addon control-label">Turma</label>
+							<select id="tipoEstagio" class="form-control" th:field="*{turma}">
+								<option value="">Selecione a turma</option>
+								<option th:each="turma : ${turmas}" th:value="${turma.id}"
+									th:text="|${turma.dia} - ${turma.tipoEstagio} - ${turma.horario}|"></option>
+							</select>
 						</div>
-						
-						<div class="col-xs-12 col-sm-3 col-md-3">
-							<div class="form-group" th:classappend="${#fields.hasErrors('dp')} ? has-error">
-								<label for=dp class="input-group-addon control-label">Dependência</label>
-								<input id="dp" type="checkbox" class="form-control funcional" th:field="*{dp}"/>
-							</div>
+					</div>
+
+					<div class="col-xs-12 col-sm-3 col-md-3">
+						<div class="form-group"
+							th:classappend="${#fields.hasErrors('datainscricao')} ? has-error">
+							<label for=datainscricao class="input-group-addon control-label">Data
+								Inscrição</label> <input id="datainscricao" type="text"
+								class="form-control text-center" th:field="*{datainscricao}"
+								data-provide="datepicker" data-format="dd/mm/yyyy"
+								data-date-language="pt-BR" data-date-autoclose="true"
+								data-date-today-Highlight="true" disabled="disabled" />
 						</div>
-												
-						<div class="col-xs-12 col-sm-3 col-md-3" th:classappend="${not #authorization.expression('hasRole(''ADMIN'') or hasRole(''ADM_NPJ'')')} ? hidden">
-							<div class="form-group" th:classappend="${#fields.hasErrors('nota')} ? has-error">
-								<label for=nota class="input-group-addon control-label">Nota</label>
-								<input id="nota" type="text" class="form-control nota" th:field="*{nota}"/>
-							</div>
+					</div>
+
+					<div class="col-xs-12 col-sm-3 col-md-3">
+						<div class="form-group"
+							th:classappend="${#fields.hasErrors('dp')} ? has-error">
+							<label for=dp class="input-group-addon control-label">Dependência</label>
+							<input id="dp" type="checkbox" class="form-control funcional"
+								th:field="*{dp}" />
 						</div>
-												
-						<div class="col-xs-12 col-sm-12 col-md-12">
-							<div class="form-group">
-								<button class="btn  btn-success pull-left sombra-btn" 
-										type="submit" title="Salvar Estagio" 
-										data-toggle="tooltip" 
-										>Salvar</button>
-								<a class="btn btn-info pull-right sombra-btn" 
-									th:href="@{/alunos/estagios}" title="voltar" data-toggle="tooltip"> 
-									<i class="fa  fa-reply"></i> 
-								</a>
-							</div>
+					</div>
+
+					<div class="col-xs-12 col-sm-3 col-md-3"
+						th:classappend="${not #authorization.expression('hasRole(''ADMIN'') or hasRole(''ADM_NPJ'')')} ? hidden">
+						<div class="form-group"
+							th:classappend="${#fields.hasErrors('nota')} ? has-error">
+							<label for=nota class="input-group-addon control-label">Nota</label>
+							<input id="nota" type="text" class="form-control nota"
+								th:field="*{nota}" />
 						</div>
-					</form>
-				</div>
+					</div>
+
+					<div class="col-xs-12 col-sm-12 col-md-12">
+						<div class="form-group">
+							<button class="btn  btn-success pull-left sombra-btn"
+								type="submit" title="Salvar Estagio" data-toggle="tooltip">Salvar</button>
+							<a class="btn btn-info pull-right sombra-btn"
+								th:href="@{/alunos/estagios}" title="voltar"
+								data-toggle="tooltip"> <i class="fa  fa-reply"></i>
+							</a>
+						</div>
+					</div>
+				</form>
 			</div>
 		</div>
 	</div>
@@ -89,6 +98,6 @@
 	<script th:src="@{/layout/javascripts/jquery.mask.min.js}"></script>
 	<script th:src="@{/datepicker/bootstrap-datepicker.min.js}"></script>
 	<script th:src="@{/datepicker/bootstrap-datepicker.pt-BR.min.js}"></script>
-	
+
 </th:block>
 </html>

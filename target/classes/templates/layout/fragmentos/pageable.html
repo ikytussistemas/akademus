@@ -25,20 +25,20 @@
 		<div th:if="${lista.totalPages != 1}" class="form-group col-md-11 pagination-centered" style="margin-bottom: -20px; margin-top:-20px;">
 			<ul class="pagination">
 				<li th:class="${lista.number == 0} ? disabled">
-					<a class="pageLink" th:attr="href=@{${url}(pageSize=${selectedPageSize}, page=1, nome=${filtro.getNome()})}">&laquo;</a>
+					<a class="pageLink" th:attr="href=@{${url}(pageSize=${selectedPageSize}, page=1,curso=${filtro.getCurso()},semestre=${filtro.getSemestre()}, nome=${filtro.getNome()})}">&laquo;</a>
 				</li>
 				<li th:class="${lista.number == 0} ? disabled">
-					<a class="pageLink" th:attr="href=@{${url}(pageSize=${selectedPageSize}, page=${lista.number}, nome=${filtro.getNome()})}">&larr;</a>
+					<a class="pageLink" th:attr="href=@{${url}(pageSize=${selectedPageSize}, page=${lista.number},curso=${filtro.getCurso()},semestre=${filtro.getSemestre()}, nome=${filtro.getNome()})}">&larr;</a>
 				</li>
 				<li th:class="${lista.number == (page - 1)} ? 'active pointer-disabled'"
 					th:each="page : ${#numbers.sequence(pager.startPage, pager.endPage)}">
-					<a class="pageLink" th:attr="href=@{${url}(pageSize=${selectedPageSize}, page=${page}, nome=${filtro.getNome()})}" th:text="${page}"></a>
+					<a class="pageLink" th:attr="href=@{${url}(pageSize=${selectedPageSize}, page=${page},curso=${filtro.getCurso()},semestre=${filtro.getSemestre()}, nome=${filtro.getNome()})}" th:text="${page}"></a>
 				</li>
 				<li th:class="${lista.number + 1 ==lista.totalPages} ? disabled">
-					<a class="pageLink" th:attr="href=@{${url}(pageSize=${selectedPageSize}, page=${lista.number + 2}, nome=${filtro.getNome()})}">&rarr;</a>
+					<a class="pageLink" th:attr="href=@{${url}(pageSize=${selectedPageSize}, page=${lista.number + 2},curso=${filtro.getCurso()},semestre=${filtro.getSemestre()}, nome=${filtro.getNome()})}">&rarr;</a>
 				</li>
 				<li th:class="${lista.number + 1 ==lista.totalPages} ? disabled">
-					<a class="pageLink" th:attr="href=@{${url}(pageSize=${selectedPageSize}, page=${lista.totalPages}, nome=${filtro.getNome()})}">&raquo;</a>
+					<a class="pageLink" th:attr="href=@{${url}(pageSize=${selectedPageSize}, page=${lista.totalPages},curso=${filtro.getCurso()},semestre=${filtro.getSemestre()}, nome=${filtro.getNome()})}">&raquo;</a>
 				</li>
 			</ul>
 		</div>

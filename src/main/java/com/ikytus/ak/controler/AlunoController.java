@@ -23,11 +23,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ikytus.ak.domain.Aluno;
 import com.ikytus.ak.domain.Estagio;
+import com.ikytus.ak.domain.enums.Periodos;
 import com.ikytus.ak.domain.enums.StatusAluno;
 import com.ikytus.ak.dto.Filter;
 import com.ikytus.ak.services.AlunoService;
 import com.ikytus.ak.services.EstagioService;
-import com.ikytus.ak.services.UsuarioService;
 import com.ikytus.ak.util.image.ImageService;
 import com.ikytus.ak.util.pageable.pageConfig;
 
@@ -37,10 +37,7 @@ public class AlunoController {
 			
 	@Autowired
 	private AlunoService service;
-	
-	@Autowired
-	private UsuarioService userService;
-	
+			
 	@Autowired
 	private EstagioService estagioService;
 	
@@ -54,8 +51,13 @@ public class AlunoController {
 			
 	@GetMapping()
 	public ModelAndView listar(@RequestParam("pageSize") Optional<Integer> pageSize,
-			@RequestParam("page") Optional<Integer> page, @ModelAttribute("filtro") Filter filter, Pageable pageable, String ordem) {
-		return pconfig.montarPagina("geral/consultaAluno", filter,service.findByName(filter.getNome(), pageSize, page, pageable, ordem));
+							   @RequestParam("page") Optional<Integer> page,
+							   @ModelAttribute("filtro") Filter filter, Pageable pageable, String ordem) {
+		
+		return pconfig.montarPagina("geral/consultaAluno", filter,service.findByFilter(filter.getCurso(),
+				filter.getSemestre(),
+				filter.getNome(), 
+				pageSize, page, pageable, ordem)).addObject("semestres",Periodos.values()).addObject("cursos", service.getCursos());
 	}
 						
 	@GetMapping("/novo")
@@ -69,6 +71,7 @@ public class AlunoController {
 		
 		mv.addObject("cursos", service.getCursos());
 		mv.addObject("statuss",StatusAluno.values());
+		mv.addObject("semestres",Periodos.values());
 		
 		mv.addObject(aluno);
 		return mv;
@@ -106,7 +109,7 @@ public class AlunoController {
 			@RequestParam("page") Optional<Integer> page, @ModelAttribute("filtro") Filter filter, Pageable pageable, String ordem) {
 
 		ModelAndView mv = new ModelAndView("aluno/meusEstagios");
-		mv.addObject("lista", getAluno().getEstagios());
+		mv.addObject("lista",service.getEstagios());
 		
 		return mv; 
 	}
@@ -115,10 +118,10 @@ public class AlunoController {
 	public ModelAndView novoEstagio(Estagio estagio) {
 		
 		estagio.setDatainscricao(new Date());
-		estagio.setAluno(getAluno());
+		estagio.setAluno(service.getAlunoLogado());
 		ModelAndView mv = new ModelAndView("aluno/cadastroEstagio");
-		mv.addObject("alunoLogado",getAluno());
-		mv.addObject("turmas", service.getTurmas(getAluno()));
+		mv.addObject("alunoLogado",service.getAlunoLogado());
+		mv.addObject("turmas", service.getTurmas());
 		
 		mv.addObject(estagio);
 				
@@ -135,9 +138,4 @@ public class AlunoController {
 		atributos.addFlashAttribute("mensagem","Estagio salvo com sucesso!");
 		return new ModelAndView("redirect:/alunos/novo_estagio").addObject(estagio);
 	}
-	
-	private Aluno getAluno() {
-		return userService.getaluno();
-	}
-	
 }

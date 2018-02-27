@@ -28,13 +28,30 @@
 				<div class="col-xs-6">
 					<form method="GET" class="form-horizontal" action="/alunos" th:object="${filtro}" >
 			   			<div class="form-group">
-			   				<div class="col-xs-6 pull-right" style="margin:-8px -12px;">
+			   				<div class="col-xs-3 pull-left" style="margin:-8px -12px;">
+								<select id="curso" class="form-control" th:field="*{curso}">
+									<option value="">Curso</option>
+									<option th:each="curso : ${cursos}" th:value="${curso.nome}"
+											th:text="|${curso.nome} - ${curso.faculdade.sigla}|"></option>
+								</select>
+							</div>
+			   				
+			   				<div class="col-xs-3" style="margin:-8px -12px;">
+								<select id="status" class="form-control" th:field="*{semestre}">
+									<option value="">semestre</option>
+									<option th:each="semestre : ${semestres}" th:value="${semestre.descricao}"
+										th:text="${semestre.descricao}"></option>
+								</select>
+							</div>
+							<div class="col-xs-6 pull-right" style="margin:-8px -12px;">
 			   					<div class="input-group">
 			   						<input class="form-control" id="filtro" placeholder="Nome do Aluno"
 			   							autofocus="autofocus" th:field="*{nome}"></input>
+			   							
 			   						<input type="hidden" name="pageSize"  th:value="${selectedPageSize}"/>
+			   						
 			   						<span class="input-group-btn">
-			   							<button type="submit" class="btn btn-default">
+			   							<button type="submit" class="btn btn-success">
 			   								<i class="glyphicon glyphicon-search"></i>
 			   							</button>
 			   						</span>
@@ -52,6 +69,7 @@
 						<th>Matrícula</th>
 						<th>Nome</th>
 						<th>Curso</th>
+						<th>Email</th>
 						<th>Semestre</th>
 						<th class="ik-table-col-icons" sec:authorize="hasRole('ADMIN')"></th>
 					</tr>
@@ -63,9 +81,9 @@
 							<a	th:href="@{/alunos/{codigo}(codigo=${aluno.id})}" th:text="${aluno.nome}"></a>
 						</td>
 						<td th:text="|${aluno.curso.nome} - ${aluno.curso.faculdade.sigla}|"></td>
+						<td th:text="${aluno.email}"></td>
 						<td th:text="${aluno.semestre}"></td>
 						<td class="text-center" style="vertical-align: middle;" sec:authorize="hasRole('ADMIN')">
-							
 							<button type="button" class="btn btn-danger btn-xs btn-block btn-active" >
 								<i	class="fa fa-trash"	style="cursor: pointer"	
 									data-toggle="modal"	
@@ -77,12 +95,12 @@
 						</td>
 					</tr>
 					<tr th:if="${lista.getTotalElements()==0}">
-						<td	colspan="5"	class="bg-danger">Nenhum aluno cadastrado</td>
+						<td	colspan="6"	class="bg-danger">Nenhum aluno cadastrado</td>
 					</tr>
 				</tbody>
 					<tfoot>
 						<tr>
-							<td	colspan="5"	class="bg-primary text-center">
+							<td	colspan="6"	class="bg-primary text-center">
 								<strong><span th:text="'Total de Registros: ' + ${lista.getTotalElements()}"></span></strong>
 							</td>
 						</tr>
