@@ -22,10 +22,9 @@ public class Funcionario extends Usuario{
 	}
 
 	public Funcionario(Long id, String nome, String cpf, Date dtnasc, TipoUsuario tipo, String senha, String endereco,
-			String bairro, String email, String funcional, Setores setor) {
+			String bairro, String email, String funcional) {
 		super(id,nome, cpf, dtnasc, tipo, senha, endereco, bairro, email);
 		this.funcional = funcional;
-		this.setor= (setor==null)?null: setor.getCod();
 	}
 
 	public String getFuncional() {
