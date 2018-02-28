@@ -12,7 +12,7 @@ import com.ikytus.ak.domain.TurmaEstagio;
 @Repository
 public interface TurmaEstagioRepository extends PagingAndSortingRepository <TurmaEstagio, Long> {
 	
-	public Page<TurmaEstagio>findBySemestre(String semestre, Pageable pageable);
+	public Page<TurmaEstagio>findBySemestreContains(String semestre, Pageable pageable);
 	
 	public List<TurmaEstagio>findBySemestre(String semestre);
 	

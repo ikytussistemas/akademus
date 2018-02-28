@@ -8,6 +8,7 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
 import com.ikytus.ak.domain.Aluno;
+import com.ikytus.ak.domain.TurmaEstagio;
 
 @Repository
 public interface AlunoRepository extends PagingAndSortingRepository <Aluno, Long> {
@@ -19,5 +20,7 @@ public interface AlunoRepository extends PagingAndSortingRepository <Aluno, Long
 			
 	public Page<Aluno>findByCursoNomeContainingAndSemestreContainingAndNomeContainingIgnoreCase
 					  (String curso,String semestre,String nome, Pageable pageable);
+	
+	public Page<Aluno>findByEstagiosTurma(TurmaEstagio turma, Pageable pageable);
 	
 }

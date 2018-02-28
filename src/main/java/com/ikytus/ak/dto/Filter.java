@@ -2,8 +2,6 @@ package com.ikytus.ak.dto;
 
 import java.util.Date;
 
-import com.ikytus.ak.domain.Curso;
-
 public class Filter {
 	
 	private String nome;

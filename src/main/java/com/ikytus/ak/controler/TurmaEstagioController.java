@@ -39,13 +39,18 @@ public class TurmaEstagioController{
 	@GetMapping()
 	public ModelAndView listar(@RequestParam("pageSize") Optional<Integer> pageSize,
 			@RequestParam("page") Optional<Integer> page, @ModelAttribute("filtro") Filter filter, Pageable pageable, String ordem) {
-		System.out.println(service.findBySemestre(filter.getNome(), pageSize, page, pageable, ordem));
+		
 		return pconfig.montarPagina("npj/consultaTurmaEstagio", filter, service.findBySemestre(filter.getNome(), pageSize, page, pageable, ordem));
 	}
 	
 	@GetMapping("/novo")
 	public ModelAndView novo(TurmaEstagio turmaEstagio){
 		ModelAndView mv = new ModelAndView("npj/cadastroTurmaEstagio");
+		
+		if(turmaEstagio.getId()!=null) {
+			mv.addObject("alunos", service.getAlunos(turmaEstagio));
+		}
+		
 		mv.addObject("tipos",TipoEstagio.values());
 		mv.addObject("dias",Dia.values());
 		mv.addObject("semestres",Semestres.values());

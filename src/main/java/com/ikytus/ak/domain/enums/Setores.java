@@ -2,14 +2,14 @@ package com.ikytus.ak.domain.enums;
 
 public enum Setores {
 	
-	ATENDIMENTOACADEMICO(1, "Aluno"),
-	FINANCEIRO(2, "Coodenador"),
-	COORDENACAO(3,"Funcionário"),
-	DIRECAO(4,"Funcionário"),
-	LABORATORIOS(5,"Funcionário"),
-	DP(6,"Funcionário"),
-	GERENCIAUNIDADE(7,"Funcionário"),
-	BIBLIOTECA(8, "Professor");
+	ATENDIMENTOACADEMICO(1, "Atendimento Acadêmico"),
+	FINANCEIRO(2, "Financeiro"),
+	COORDENACAO(3,"Coordenação"),
+	DIRECAO(4,"Direção"),
+	LABORATORIOS(5,"Laboratórios"),
+	DP(6,"DP"),
+	GERENCIAUNIDADE(7,"Gerência de Unidade"),
+	BIBLIOTECA(8, "Biblioteca");
 		
 	private int cod;
 	private String descricao;
@@ -39,5 +39,4 @@ public enum Setores {
 		}
 		throw new IllegalArgumentException("Id inválido: " + cod);
 	}
-
 }
