@@ -67,6 +67,7 @@ public class AlunoController {
 			mv.addObject("tel1", aluno.getTelefones().get(0));
 			mv.addObject("tel2", aluno.getTelefones().get(1));
 			mv.addObject("tel3", aluno.getTelefones().get(2));
+			mv.addObject("estagios", service.getEstagiosAluno(aluno));
 		}
 		
 		mv.addObject("cursos", service.getCursos());

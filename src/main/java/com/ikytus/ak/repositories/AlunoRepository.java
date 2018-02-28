@@ -16,7 +16,8 @@ public interface AlunoRepository extends PagingAndSortingRepository <Aluno, Long
 	public Aluno findByEmail(String email);
 	
 	public Page<Aluno>findByNomeContainingIgnoreCase(String nome, Pageable pageable);
-	
-	public Page<Aluno>findByCursoNomeAndSemestreAndNomeContainingIgnoreCase(String curso,String semestre,String nome, Pageable pageable);
+			
+	public Page<Aluno>findByCursoNomeContainingAndSemestreContainingAndNomeContainingIgnoreCase
+					  (String curso,String semestre,String nome, Pageable pageable);
 	
 }

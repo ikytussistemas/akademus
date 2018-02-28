@@ -67,7 +67,7 @@ public class AlunoService implements AbstractService<Aluno> {
 	public Page<Aluno> findByFilter(String curso, String semestre,String nome, Optional<Integer> pageSize, Optional<Integer> page, Pageable pageable,
 			String ordem) {
 		
-		return repository.findByCursoNomeAndSemestreAndNomeContainingIgnoreCase(Optional.ofNullable(curso).orElse("%i%"), Optional.ofNullable(semestre).orElse("%º"), Optional.ofNullable(nome).orElse("%"),
+		return repository.findByCursoNomeContainingAndSemestreContainingAndNomeContainingIgnoreCase(Optional.ofNullable(curso).orElse("%"), Optional.ofNullable(semestre).orElse("%"), Optional.ofNullable(nome).orElse("%"),
 				pconfig.showPage(pageSize, page, pageable, Optional.ofNullable(ordem).orElse("nome")));
 	}
 	
@@ -108,29 +108,35 @@ public class AlunoService implements AbstractService<Aluno> {
 	public List<Estagio> getEstagios(){
 		return estagioRepository.findByAluno(getAlunoLogado());
 	}
+	public List<Estagio> getEstagiosAluno(Aluno aluno){
+		return estagioRepository.findByAluno(aluno);
+	}
 
 	public List<TurmaEstagio> getTurmas() {
 		List<TurmaEstagio> turmasSelecionadas = new ArrayList<>();
 		List<String> tipos = new ArrayList<>();
-	
+		List<TurmaEstagio> turmasAluno = new ArrayList<>();
+		
 		for (Estagio e: getEstagios()) {
 			tipos.add(e.getTurma().getTipoEstagio().getDescricao());
+			turmasAluno.add(e.getTurma());
 		}
 		
 		if (getAlunoLogado().getSemestre().equals("10º")) {
-		
-			for (TurmaEstagio t : turmaEstagioRepository.findBySemestre("2018.1")) {
-				if(!tipos.contains(t.getTipoEstagio().getDescricao())) {
-					if(!t.isLotada()) {
-						turmasSelecionadas.add(t);
+			for (TurmaEstagio t : turmaEstagioRepository.findBySemestre("2018.1")) { //seleciona as turmas de estágio do semestre
+				if (t.getDisponivel().contains(getAlunoLogado().getSemestre())) { //verifica se a turma está disponível para o semestre do aluno
+					if(!turmasAluno.contains(t)) { // verifica se o aluno já se cadastrou na turma
+						if(!t.isLotada()) { // verifica se a turma de estágio está lotada
+							turmasSelecionadas.add(t);
+						}
 					}
 				}
 			}
 		} else {
-			for (TurmaEstagio t : turmaEstagioRepository.findBySemestre("2018.1")) {
-				if (t.getDisponivel().contains(getAlunoLogado().getSemestre())) {
-					if(!tipos.contains(t.getTipoEstagio().getDescricao())) {
-						if(!t.isLotada()) {
+			for (TurmaEstagio t : turmaEstagioRepository.findBySemestre("2018.1")) {//seleciona as turmas de estágio do semestre
+				if (t.getDisponivel().contains(getAlunoLogado().getSemestre())) { //verifica se a turma está disponível para o semestre do aluno
+					if(!tipos.contains(t.getTipoEstagio().getDescricao())) { //verifica se o aluno já se cadastrou no tipo de estágio
+						if(!t.isLotada()) { // verifica se a turma de estágio está lotada
 							turmasSelecionadas.add(t);
 						}
 					}
