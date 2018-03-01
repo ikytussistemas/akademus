@@ -32,12 +32,6 @@
 					</button>
 					<ul class="dropdown-menu" aria-labelledby="mnadm">
 						<li class="aw-menu__item" sec:authorize="hasRole('ADMIN')">
-							<a th:href="@{/usuarios}" class="item-menu">
-								<i class="fa fa-user-circle"></i> <span>Usuários</span>
-						</a>
-						</li>
-						<li role="separator" class="divider"></li>
-						<li class="aw-menu__item" sec:authorize="hasRole('ADMIN')">
 							<a th:href="@{/faculdades}" class="item-menu"> <i
 								class="fa  fa-university"></i> <span>Faculdades</span>
 						</a>
@@ -66,6 +60,11 @@
 						<li class="aw-menu__item"><a
 							th:href="@{/alunos}"> <i class="fa  fa-book"></i>
 								<span>Alunos</span>
+						</a></li>
+						<li role="separator" class="divider"></li>
+						<li class="aw-menu__item"><a
+							th:href="@{/funcionarios}"> <i class="fa  fa-book"></i>
+								<span>Funcionários</span>
 						</a></li>
 						<li role="separator" class="divider"></li>
 						

@@ -7,7 +7,8 @@ public enum Perfil {
 	EDITOR(3,"ROLE_EDITOR"),
 	USUARIO(4,"ROLE_USUARIO"),
 	NPJ(5,"ROLE_NPJ"),
-	ADMNPJ(6,"ROLE_ADMNPJ");
+	ADMNPJ(6,"ROLE_ADMNPJ"),
+	FUNCIONARIO(7,"ROLE_FUNCIONARIO");
 	
 	private int cod;
 	private String descricao;
