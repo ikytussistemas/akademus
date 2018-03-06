@@ -21,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ikytus.ak.domain.Funcionario;
+import com.ikytus.ak.domain.enums.Perfil;
 import com.ikytus.ak.domain.enums.Setores;
 import com.ikytus.ak.dto.Filter;
 import com.ikytus.ak.services.FuncionarioService;
@@ -57,9 +58,13 @@ public class FuncionarioController {
 			mv.addObject("tel2", funcionario.getTelefones().get(1));
 			mv.addObject("tel3", funcionario.getTelefones().get(2));
 		}
-		
+		System.out.println(funcionario.getPerfis().size());
+		System.out.println(funcionario.getPerfis());
 		mv.addObject("setores",Setores.values());
+		mv.addObject("perfis",Perfil.values());
 		mv.addObject(funcionario);
+		System.out.println(funcionario.getPerfis().size());
+		System.out.println(funcionario.getPerfis());
 		return mv;
 	}
 	
@@ -72,6 +77,9 @@ public class FuncionarioController {
 		if(result.hasErrors()){
 			return novo(funcionario);
 		}
+		
+		System.out.println(funcionario.getPerfis().size());
+		System.out.println(funcionario.getPerfis());
 		funcionario.getTelefones().addAll(Arrays.asList(tel1,tel2,tel3));
 		is.gravaImagemBase64Service(file,service,funcionario);
 		atributos.addFlashAttribute("mensagem","Funcionario(a) salvo(a) com sucesso!");

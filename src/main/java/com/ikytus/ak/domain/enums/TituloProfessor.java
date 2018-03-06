@@ -1,20 +1,15 @@
 package com.ikytus.ak.domain.enums;
 
-public enum Perfil {
+public enum TituloProfessor {
 	
-	ADMIN(1, "ROLE_ADMIN"),
-	ALUNO(2, "ROLE_ALUNO"),
-	EDITOR(3,"ROLE_EDITOR"),
-	USUARIO(4,"ROLE_USUARIO"),
-	NPJ(5,"ROLE_NPJ"),
-	ADMNPJ(6,"ROLE_ADMNPJ"),
-	FUNCIONARIO(7,"ROLE_FUNCIONARIO"),
-	PROFESSOR(8,"ROLE_PROFESSOR");
+	ESPECIALISTA(1, "Especialista"),
+	MESTRE(2, "Mestre"),
+	DOUTOR(3, "Doutor(a)");
 	
 	private int cod;
 	private String descricao;
 	
-	private Perfil(int cod, String descricao) {
+	private TituloProfessor(int cod, String descricao) {
 		this.cod = cod;
 		this.descricao=descricao;
 	}
@@ -27,12 +22,12 @@ public enum Perfil {
 		return descricao;
 	}
 	
-	public static Perfil toEnum(Integer cod) {
+	public static TituloProfessor toEnum(Integer cod) {
 		if(cod==null) {
 			return null;
 		}
 		
-		for (Perfil x : Perfil.values()) {
+		for (TituloProfessor x : TituloProfessor.values()) {
 			if(cod.equals(x.getCod())) {
 				return x;
 			}

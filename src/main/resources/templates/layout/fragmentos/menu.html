@@ -50,7 +50,7 @@
 						</li>
 					</ul>
 				</div>
-				<div class="dropdown componenteform" sec:authorize="hasRole('ADMIN') or hasRole('NPJ')">
+				<div class="dropdown componenteform" sec:authorize="hasRole('ADMIN') or hasRole('funcionario')">
 					<button class="btn btn-info btn-block dropdown-toggle fa fa-search" type="button"
 						id="mnconsulta" data-toggle="dropdown" aria-haspopup="true"
 						aria-expanded="false">
@@ -62,7 +62,7 @@
 								<span>Alunos</span>
 						</a></li>
 						<li role="separator" class="divider"></li>
-						<li class="aw-menu__item"><a
+						<li class="aw-menu__item" sec:authorize="hasRole('ADMIN')"><a
 							th:href="@{/funcionarios}"> <i class="fa  fa-book"></i>
 								<span>Funcionários</span>
 						</a></li>
@@ -70,7 +70,7 @@
 						
 					</ul>
 				</div>
-				<div class="dropdown componenteform" sec:authorize="hasRole('ADMIN')">
+				<div class="dropdown componenteform" sec:authorize="hasRole('ADMIN') or hasRole('funcionario')">
 					<button class="btn btn-info btn-block dropdown-toggle fa fa-search" type="button"
 						id="mnconsulta" data-toggle="dropdown" aria-haspopup="true"
 						aria-expanded="false">
@@ -122,11 +122,6 @@
 						NPJ<span class="caret"></span>
 					</button>
 					<ul class="dropdown-menu" aria-labelledby="mnnpj">
-						<li class="aw-menu__item" sec:authorize="hasRole('ADMIN') or hasRole('NPJ') or hasRole('ADM_NPJ')">
-							<a th:href="@{/npj/alunos}" class="item-menu">
-								<i class="fa  fa-black-tie"></i> <span>Alunos</span>
-							</a>
-						</li>
 						<li class="aw-menu__item">
 							<a th:href="@{/turmas_estagio}" class="item-menu">
 								<i class="fa  fa-gavel"></i> <span>Turmas de Estágio</span>

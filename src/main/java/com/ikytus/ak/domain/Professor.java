@@ -11,7 +11,9 @@ import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import com.ikytus.ak.domain.enums.TipoUsuario;;
+import com.ikytus.ak.domain.enums.StatusProfessor;
+import com.ikytus.ak.domain.enums.TipoUsuario;
+import com.ikytus.ak.domain.enums.TituloProfessor;;
 
 @Entity
 public class Professor extends Usuario{
@@ -20,11 +22,12 @@ public class Professor extends Usuario{
 	@Column(length = 7)
 	private String funcional;
         
-    private String titulo;
-
+	private Integer titulo;
+	
+	@Column(length = 80)
     private String emailsecundario;
    
-    private String status;
+    private Integer status;
 
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "dd/MM/yyyy")
@@ -40,13 +43,15 @@ public class Professor extends Usuario{
 	}
 
 	public Professor(Long id, String nome, String cpf, Date dtnasc, TipoUsuario tipo, String senha, String endereco,
-			String bairro, String email, String funcional, String titulo, String emailSecundario, String status, Date admissao) {
+			String bairro, String email, String funcional, TituloProfessor titulo, String emailSecundario, 
+			StatusProfessor status, Date admissao, boolean coord) {
 		super(id,nome, cpf, dtnasc, tipo, senha, endereco, bairro, email);
 		this.funcional = funcional;
-		this.titulo = titulo;
+		this.titulo = (titulo==null)?null: titulo.getCod();
 		this.emailsecundario = emailSecundario;
-		this.status = status;
+		this.status = (status==null)?null: status.getCod();
 		this.admissao = admissao;
+		this.coordenador=coord;
 	}
 
 	public String getFuncional() {
@@ -57,28 +62,28 @@ public class Professor extends Usuario{
 		this.funcional = funcional;
 	}
 
-	public String getTitulo() {
-		return titulo;
+	public TituloProfessor getTitulo() {
+		return TituloProfessor.toEnum(titulo);
 	}
 
-	public void setTitulo(String titulo) {
-		this.titulo = titulo;
+	public void setTitulo(TituloProfessor titulo) {
+		this.titulo = titulo.getCod();
+	}
+	
+	public StatusProfessor getStatus() {
+		return StatusProfessor.toEnum(status);
 	}
 
+	public void setStatus(StatusProfessor status) {
+		this.status = status.getCod();
+	}
+		
 	public String getEmailsecundario() {
 		return emailsecundario;
 	}
 
 	public void setEmailsecundario(String emailsecundario) {
 		this.emailsecundario = emailsecundario;
-	}
-
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
 	}
 
 	public Date getAdmissao() {
@@ -88,7 +93,7 @@ public class Professor extends Usuario{
 	public void setAdmissao(Date admissao) {
 		this.admissao = admissao;
 	}
-		
+
 	public boolean isCoordenador() {
 		return coordenador;
 	}

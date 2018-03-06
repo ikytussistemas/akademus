@@ -66,6 +66,7 @@ public class FuncionarioService implements AbstractService<Funcionario> {
 			funcionario.setSenha(pe.encode(funcionario.getFuncional()));
 		}
 		funcionario.setTipo(TipoUsuario.FUNCIONARIO);
+		
 		if (!funcionario.getPerfis().contains(Perfil.FUNCIONARIO)) {
 			funcionario.addPerfil(Perfil.FUNCIONARIO);
 		}

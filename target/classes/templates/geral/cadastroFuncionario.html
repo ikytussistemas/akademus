@@ -145,12 +145,22 @@
 							</div>
 						</div>
 					</div>
+					
+					<div class="col-xs-12 col-sm-12 col-md-12 text-center">
+						<th:block th:each="perfil : ${perfis}">
+							<span class=" btn btn-xs btn-default col-xs-2"> <input
+								type="checkbox" name="perfislistados"
+								th:value="${perfil}" th:field="*{perfis}" /> <label
+								th:text="${perfil}">Perfil</label>
+							</span>
+						</th:block>
+					</div>
 
 					<div class="col-xs-12">
 						<div class="form-group">
 							<button class="btn  btn-success pull-left sombra-btn"
 								type="submit" title="Salvar funcionario" data-toggle="tooltip"
-								sec:authorize="hasRole('ADMIN') or hasRole('EDITOR')">Salvar</button>
+								>Salvar</button>
 							<a class="btn btn-info pull-right sombra-btn"
 								th:href="@{/funcionarios}" title="voltar" data-toggle="tooltip"> <i
 								class="fa  fa-reply"></i>

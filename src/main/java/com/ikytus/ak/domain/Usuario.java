@@ -2,9 +2,7 @@ package com.ikytus.ak.domain;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import javax.persistence.CollectionTable;
@@ -62,7 +60,7 @@ public class Usuario extends AbstractEntity{
 	
 	@ElementCollection(fetch=FetchType.EAGER)
 	@CollectionTable(name="perfis")
-	private Set<Integer> perfis = new HashSet<>();
+	private List<Integer> perfis = new ArrayList<>();
 	
 				
 	public Usuario() {
@@ -156,13 +154,20 @@ public class Usuario extends AbstractEntity{
 		this.bairro = bairro;
 	}
 	
-	public Set<Perfil> getPerfis(){
-		return  perfis.stream().map(x -> Perfil.toEnum(x)).collect(Collectors.toSet());
+	public List<Perfil> getPerfis(){
+		return  perfis.stream().map(x -> Perfil.toEnum(x)).collect(Collectors.toList());
 	}
-	
+		
+	public void setPerfis(List<Perfil> perfis) {
+		for(Perfil p : perfis) {
+			if(!this.perfis.contains(p.getCod())) {
+				this.perfis.add(p.getCod());
+			}
+		}
+	}
+
 	public void addPerfil(Perfil perfil) {
 		perfis.add(perfil.getCod());
 	}
-	
 	
 }
