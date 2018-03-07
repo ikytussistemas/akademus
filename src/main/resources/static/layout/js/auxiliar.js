@@ -1,16 +1,17 @@
+$(document).ready(function(){
+	 $('.semestre').mask("0000.0", {placeholder: "____._"});
+	 $('.periodo').mask("0º");
+	 $('.ch').mask("999");
+	 $('.nota').mask("99.99");
+	 $('.horario').mask("99:99-99:99", {placeholder: "__:__-__:__"});
+	 $('.horario-coord').mask("99:99-99:99/99:99-99:99");
+	 $('.telefone').mask("(99)90000-0000", {placeholder: "(__)_____-____"}, {reverse: true});
+	 $('.cpf').mask("000.000.000-00");
+});
+
 $(function () {
   $('[data-toggle="tooltip"]').tooltip();
-  
-  $('.semestre').mask("0000.0");
-  $('.periodo').mask("0º");
-  $('.ch').mask("999");
-  $('.nota').mask("99.99");
-  $('.horario').mask("99:99-99:99");
-  $('.horario-coord').mask("99:99-99:99/99:99-99:99");
-  $('.telefone').mask("(99)90000-0000");
-  $('.cpf').mask("000.000.000-00");
-    
-  
+ 
   $('.js-currency').maskMoney({decimal:',',thousands:'.', allowZero:true});
   
   $('.js-atualizar-status').on('click', function(event){

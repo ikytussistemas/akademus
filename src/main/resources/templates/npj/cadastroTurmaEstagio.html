@@ -137,7 +137,8 @@
 						</form>
 					</div>
 
-					<div id="alunos" class="tab-pane fade in panel panel-primary">
+					<div id="alunos" class="tab-pane fade in panel panel-primary" 
+							th:if="${not #strings.isEmpty(turmaEstagio.id)}">
 					
 					<div class="col-xs-12 text-center" >
 						<button id="btnDownload" class="bg-info">

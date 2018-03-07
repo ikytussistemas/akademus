@@ -4,7 +4,10 @@ public enum TipoEstagio {
 	
 	SIMULADO(1, "Simulado"),
 	REALCIVIL(2, "Real Civil"),
-	REALPENAL(3,"Real Penal");
+	REALPENAL(3,"Real Penal"),
+	CURRICULAR(4,"Curricular"),
+	NAOCURRICULAR(5,"Não Curricular"),
+	SELECAO22JEC(6, "Pré-seleção 22 JEC");
 		
 	private int cod;
 	private String descricao;

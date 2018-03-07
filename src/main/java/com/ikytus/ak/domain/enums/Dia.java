@@ -6,7 +6,9 @@ public enum Dia {
 	TERCA(2, "Terça-Feira"),
 	QUARTA(3,"Quarta-Feira"),
 	QUINTA(4,"Quinta-Feira"),
-	SEXTA(5,"Sexta-Feira");
+	SEXTA(5,"Sexta-Feira"),
+	SABADO(6,"Sábado"),
+	NAODEFINIDO(7,"Não Definido");
 	
 	private int cod;
 	private String descricao;

@@ -1,6 +1,6 @@
 $(document).ready(function() {
 	changePageAndSize();
-	changeOrder()
+	/*changeOrder()*/
 });
 
 function changePageAndSize(url) {
