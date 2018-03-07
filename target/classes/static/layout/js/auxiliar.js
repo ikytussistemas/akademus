@@ -2,9 +2,9 @@ $(document).ready(function(){
 	 $('.semestre').mask("0000.0", {placeholder: "____._"});
 	 $('.periodo').mask("0º");
 	 $('.ch').mask("999");
-	 $('.nota').mask("99.99");
+	 $('.nota').mask("99.99",{reverse: true});
 	 $('.horario').mask("99:99-99:99", {placeholder: "__:__-__:__"});
-	 $('.horario-coord').mask("99:99-99:99/99:99-99:99");
+	 $('.horario-coord').mask("99:99-99:99/99:99-99:99", {placeholder: "__:__-__:__/__:__-__:__"});
 	 $('.telefone').mask("(99)90000-0000", {placeholder: "(__)_____-____"}, {reverse: true});
 	 $('.cpf').mask("000.000.000-00");
 });
