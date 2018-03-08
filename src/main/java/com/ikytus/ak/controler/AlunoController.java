@@ -139,4 +139,21 @@ public class AlunoController {
 		atributos.addFlashAttribute("mensagem","Estagio salvo com sucesso!");
 		return new ModelAndView("redirect:/alunos/novo_estagio").addObject(estagio);
 	}
+	
+	
+	
+	@GetMapping("/estagios/{codigo}")
+	public ModelAndView editarEstagio(@PathVariable Long codigo){
+		ModelAndView mv = new ModelAndView("aluno/controleEstagio");
+		mv.addObject(estagioService.findOne(codigo));
+	
+		return mv;
+	}
+	
+	@DeleteMapping("/estagios/{codigo}")
+	public String deletarEstagio(@PathVariable Long codigo, RedirectAttributes atributos){
+		estagioService.delete(codigo);
+		atributos.addFlashAttribute("mensagem","Estagio removido com sucesso!");
+		return "redirect:/alunos";
+	}
 }

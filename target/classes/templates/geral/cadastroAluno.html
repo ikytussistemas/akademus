@@ -198,7 +198,7 @@
 								<div class="form-group">
 									<button class="btn  btn-success pull-left sombra-btn"
 										type="submit" title="Salvar aluno" data-toggle="tooltip"
-										sec:authorize="hasRole('ADMIN') or hasRole('EDITOR')">Salvar</button>
+										sec:authorize="hasRole('ADMIN') or hasRole('ADM_NPJ') or hasRole('NPJ')">Salvar</button>
 									<a class="btn btn-info pull-right sombra-btn"
 										th:href="@{/alunos}" title="voltar" data-toggle="tooltip">
 										<i class="fa  fa-reply"></i>
@@ -218,6 +218,7 @@
 									<th>DP</th>
 									<th>Nota Final</th>
 									<th>Situação</th>
+									<th class="ik-table-col-icons" sec:authorize="hasRole('ADMIN')"></th>
 								</tr>
 							</thead>
 							<tbody>
@@ -227,6 +228,20 @@
 									<td th:text="${estagio.dp}" data-label="DP"></td>
 									<td th:text="${estagio.nota}" data-label="Nota Final"></td>
 									<td th:text="${estagio.situacao}" data-label="Situação"></td>
+									<td class="text-center" style="vertical-align: middle;" sec:authorize="hasRole('ADMIN')">
+										<!-- <a class="btn btn-xs btn-info btn-active"
+											th:href="@{/alunos/estagios/{codigo}(codigo=${estagio.id})}" title="Detalhes" data-toggle="tooltip"> 
+											<i class="fa  fa-pencil"></i> 
+										</a> -->
+										<button type="button" class="btn btn-danger btn-xs btn-block btn-active" >
+											<i	class="fa fa-trash"	style="cursor: pointer"	
+												data-toggle="modal"	
+												data-target="#confirmaExclusaoModal"
+												data:nome="${aluno.nome}"
+												data:url-apagar="@{/alunos/{codigo}(codigo=${aluno.id})}">
+											</i>
+										</button>
+									</td>
 								</tr>
 								<tr th:if="${estagios.isEmpty()}">
 									<td colspan="6" class="bg-danger">Nenhum estágio

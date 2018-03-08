@@ -12,7 +12,7 @@
 				<a  class="btn btn-info sombra-btn pull-right" style="margin:-8px -12px;" 
 					th:href="@{/alunos/novo}" 
 					title="Novo" data-toggle="tooltip" data-placement="bottom"
-					sec:authorize="hasRole('ADMIN')"> 
+					sec:authorize="hasRole('ADMIN') or hasRole('NPJ') or hasRole('ADM_NPJ')"> 
 							<i class="fa  fa-fw  fa-plus"></i> 
 				</a>
 			</h2>		
