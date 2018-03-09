@@ -122,7 +122,7 @@ public class AlunoService implements AbstractService<Aluno> {
 			turmasAluno.add(e.getTurma());
 		}
 		
-		if (getAlunoLogado().getSemestre().equals("10º")) {
+		if (getAlunoLogado().getSemestre().equals("10º")||getAlunoLogado().getSemestre().equals("9º")) {
 			for (TurmaEstagio t : turmaEstagioRepository.findBySemestre("2018.1")) { //seleciona as turmas de estágio do semestre
 				if (t.getDisponivel().contains(getAlunoLogado().getSemestre())) { //verifica se a turma está disponível para o semestre do aluno
 					if(!turmasAluno.contains(t)) { // verifica se o aluno já se cadastrou na turma

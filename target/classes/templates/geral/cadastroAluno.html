@@ -237,8 +237,8 @@
 											<i	class="fa fa-trash"	style="cursor: pointer"	
 												data-toggle="modal"	
 												data-target="#confirmaExclusaoModal"
-												data:nome="${aluno.nome}"
-												data:url-apagar="@{/alunos/{codigo}(codigo=${aluno.id})}">
+												data:nome="${estagio.turma.tipoEstagio}"
+												data:url-apagar="@{/alunos/estagios/{codigo}(codigo=${estagio.id})}">
 											</i>
 										</button>
 									</td>
@@ -263,6 +263,7 @@
 			</div>
 		</div>
 	</div>
+	<th:block layout:insert="~{layout/fragmentos/parts :: confirmaExclusao (@{/alunos/estagios})}"></th:block>
 </section>
 <th:block layout:fragment="javascript-extra">
 	<script th:src="@{/layout/js/VisualizarImagem.js}"></script>
