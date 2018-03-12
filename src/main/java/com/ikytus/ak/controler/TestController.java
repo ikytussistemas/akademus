@@ -132,7 +132,7 @@ public class TestController {
 				}
 				
 				
-				/*if(repuser.findByEmail(dados[2])==null) {
+				if(repuser.findByEmail(dados[2])==null) {
 			
 					Professor prf = new Professor(null, dados[2], dados[4], null, TipoUsuario.PROFESSOR, 
 							pe.encode(dados[1]), dados[6], null, dados[10], dados[1], titulo, 
@@ -142,17 +142,17 @@ public class TestController {
 					String tel2;
 					String tel3;
 					
-					if(dados[7]==null) {
+					if(dados[7].isEmpty()) {
 						tel1="(00)00000-0000";
 					}else {
 						tel1=dados[7];
 					}
-					if(dados[8]==null) {
+					if(dados[8].isEmpty()) {
 						tel2="(00)00000-0000";
 					}else {
 						tel2=dados[8];
 					}
-					if(dados[9]==null) {
+					if(dados[9].isEmpty()) {
 						tel3="(00)00000-0000";
 					}else {
 						tel3=dados[9];
@@ -161,14 +161,14 @@ public class TestController {
 					prf.getTelefones().addAll(Arrays.asList(tel1,tel2,tel3));
 					prf.addPerfil(Perfil.PROFESSOR);
 					repprf.save(prf);
-				};*/
+				}
 			
-				System.out.println("campo0: "+ dados[0]+"campo1: "+ dados[1]+
+				/*System.out.println("campo0: "+ dados[0]+"campo1: "+ dados[1]+
 				  "campo2: "+ dados[2]+"Status: "+ sp.getDescricao()+"campo4: "+ dados[4]+
 				  "campo5: "+ dados[5]+"campo6: "+ dados[6]+"campo7: "+ dados[7]+
 				  "campo8: "+ dados[8]+"campo9: "+ dados[9]+"campo10: "+ dados[10]+
 				  "campo11: "+ dados[11]+"Titulo: "+ titulo.getDescricao()+"campo13: "+ dados[13]+
-				  "campo14: "+ dados[14]);
+				  "campo14: "+ dados[14]);*/
 			}
 		}
 		scanner.close();

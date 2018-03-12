@@ -26,7 +26,7 @@
 				<th:block layout:insert="~{layout/fragmentos/pageable :: pageSelect ('/professores')}"></th:block>
 				
 				<div class="col-xs-6">
-					<form method="GET" class="form-horizontal" action="/alunos" th:object="${filtro}" >
+					<form method="GET" class="form-horizontal" action="/professores" th:object="${filtro}" >
 			   			<div class="form-group">
 							<div class="col-xs-6 pull-right" style="margin:-8px -12px;">
 			   					<div class="input-group">
@@ -64,7 +64,7 @@
 						<td>
 							<a	th:href="@{/professores/{codigo}(codigo=${professor.id})}" th:text="${professor.nome}"></a>
 						</td>
-						<td th:text="${professor.telefones}"></td>
+						<td th:text="${professor.getTelefones().get(0)}"></td>
 						<td th:text="${professor.email}"></td>
 						<td class="text-center" style="vertical-align: middle;" sec:authorize="hasRole('ADMIN')">
 							<button type="button" class="btn btn-danger btn-xs btn-block btn-active" >

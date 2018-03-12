@@ -3,8 +3,11 @@ package com.ikytus.ak.domain;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -35,7 +38,10 @@ public class Professor extends Usuario{
     
     private boolean coordenador; 
    
-    @ManyToMany(mappedBy = "professores")
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "curso_professor", 
+    			joinColumns = @JoinColumn(name = "professor_id", referencedColumnName = "id"), 
+    			inverseJoinColumns = @JoinColumn(name = "curso_id", referencedColumnName = "id"))
     private List<Curso> cursos;
 
 	public Professor() {

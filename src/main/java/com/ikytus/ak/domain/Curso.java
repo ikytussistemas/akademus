@@ -6,7 +6,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -46,11 +45,8 @@ public class Curso extends AbstractEntity {
 	@ManyToOne(cascade=CascadeType.REFRESH)
 	@JoinColumn(name = "faculdade")
 	private Faculdade faculdade;
-	
-	@ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "curso_professor", 
-    			joinColumns = @JoinColumn(name = "curso_id", referencedColumnName = "id"), 
-    			inverseJoinColumns = @JoinColumn(name = "professor_id", referencedColumnName = "id"))
+		
+	@ManyToMany(mappedBy = "cursos")
     private List<Professor> professores;
 	
 	@OneToMany(mappedBy = "curso", cascade=CascadeType.ALL)
