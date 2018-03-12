@@ -9,7 +9,9 @@ public enum Setores {
 	LABORATORIOS(5,"Laboratórios"),
 	DP(6,"DP"),
 	GERENCIAUNIDADE(7,"Gerência de Unidade"),
-	BIBLIOTECA(8, "Biblioteca");
+	BIBLIOTECA(8, "Biblioteca"),
+	NPJ(9, "NPJ"),
+	ESTAGIO(10, "estágio");
 		
 	private int cod;
 	private String descricao;

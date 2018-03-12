@@ -35,10 +35,9 @@
 								th:src="@{/layout/imagens/prod.jpg}"
 								th:if="${#strings.isEmpty(funcionario.img)}" style="max-width: 120px" />
 							<img class="col-xs-12 img-thumbnail img-responsive" id="foto"
-								th:src="*{img}" th:if="${not #strings.isEmpty(funcionario.img)}"
-								style="max-width: 120px" /> <input type="hidden"
-								th:field=*{img} /> <input type="file" name="file"
-								onchange="visualizarImg(4,0)" capture="camera" />
+								th:src="*{img}" th:if="${not #strings.isEmpty(funcionario.img)}"/> 
+								<input type="hidden" th:field=*{img} /> 
+								<input type="file" name="file"	onchange="visualizarImg(3,0)" capture="camera" />
 						</div>
 					</div>
 					<div class="col-xs-12 col-sm-10 col-md-10">
@@ -178,6 +177,7 @@
 		th:src="@{/webjars/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js}"></script>
 	<script
 		th:src="@{/webjars/bootstrap-datepicker/1.7.1/locales/bootstrap-datepicker.pt-BR.min.js}"></script>
+	
 	<script th:src="@{/layout/js/jquery.mask.min.js}"></script>
 	<script type="text/javascript">
 		
