@@ -16,7 +16,7 @@
 
 				<th:block layout:insert="~{layout/fragmentos/alertas :: success}"></th:block>
 
-				<form method="post" class="form-vertical  js-form-loading" enctype="multipart/form-data"
+				<form method="post" class="form-vertical  js-form-loading"
 					th:object="${curso}" th:action="@{/cursos/novo}">
 					
 					<th:block layout:insert="~{layout/fragmentos/alertas :: validation}"></th:block>
