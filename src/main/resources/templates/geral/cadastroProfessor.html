@@ -202,7 +202,7 @@
 								</div>
 								<div class="col-xs-12 col-sm-12 col-md-12 text-center">
 									<th:block th:each="curso : ${cursosCadastrados}">
-										<span class=" btn btn-xs btn-default col-xs-2"> <input
+										<span class=" btn btn-xs btn-default col-xs-4"> <input
 											type="checkbox" name="cursoslistados"
 											th:value="${curso.id}" th:field="*{cursos}" /> <label
 											th:text="|${curso.nome}-${curso.faculdade.sigla}|">Curso</label>
