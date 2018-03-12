@@ -15,14 +15,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ikytus.ak.domain.Curso;
 import com.ikytus.ak.dto.Filter;
 import com.ikytus.ak.services.CursoService;
-import com.ikytus.ak.util.image.ImageService;
 import com.ikytus.ak.util.pageable.pageConfig;
 
 @Controller
@@ -31,9 +29,6 @@ public class CursoController{
 	
 	@Autowired
 	private CursoService service;
-	
-	@Autowired
-	private ImageService is;
 	
 	@Autowired
 	private pageConfig pconfig;
@@ -54,12 +49,11 @@ public class CursoController{
 	}
 	
 	@PostMapping("/novo")
-	public ModelAndView salvar(@RequestParam("file") MultipartFile file,
-								@Valid Curso curso, BindingResult result, RedirectAttributes atributos){
+	public ModelAndView salvar(@Valid Curso curso, BindingResult result, RedirectAttributes atributos){
 		if(result.hasErrors()){
 			return novo(curso);
 		}
-		is.gravaImagemBase64Service(file,service,curso);
+		service.salvar(curso);
 		atributos.addFlashAttribute("mensagem","Curso salvo com sucesso!");
 		return new ModelAndView("redirect:/cursos/novo");
 	}
