@@ -58,29 +58,29 @@
 					</thead>
 					<tbody>
 						<tr th:each="curso : ${lista}">
-							<td>
+							<td style="vertical-align: middle;">
 								<a	th:href="@{/cursos/{codigo}(codigo=${curso.id})}" th:text="${curso.nome}"
 									data-toggle="tooltip" data-placement="bottom" 
 									th:attr="title=${curso.coordenador}"></a>
 							</td>
-							<td>
-								<button type="button" class="btn btn-danger"
+							<td style="vertical-align: middle;">
+								<button type="button" class="btn btn-danger btn-xs"
 									data-toggle="tooltip" data-placement="bottom" 
 									th:attr="title=${curso.horarioseg}" th:if="${not #strings.isEmpty(curso.horarioseg)}">SEG</button>
-								<button type="button" class="btn btn-success"
+								<button type="button" class="btn btn-success btn-xs"
 									data-toggle="tooltip" data-placement="bottom" 
 									th:attr="title=${curso.horarioter}" th:if="${not #strings.isEmpty(curso.horarioter)}">TER</button>
-								<button type="button" class="btn btn-info"
+								<button type="button" class="btn btn-info btn-xs"
 									data-toggle="tooltip" data-placement="bottom" 
 									th:attr="title=${curso.horarioqua}" th:if="${not #strings.isEmpty(curso.horarioqua)}">QUA</button>
-								<button type="button" class="btn btn-primary"
+								<button type="button" class="btn btn-primary btn-xs"
 									data-toggle="tooltip" data-placement="bottom" 
 									th:attr="title=${curso.horarioqui}" th:if="${not #strings.isEmpty(curso.horarioqui)}">QUI</button>
-								<button type="button" class="btn btn-warning"
+								<button type="button" class="btn btn-warning btn-xs"
 									data-toggle="tooltip" data-placement="bottom" 
 									th:attr="title=${curso.horariosex}" th:if="${not #strings.isEmpty(curso.horariosex)}">SEX</button>
 							</td>
-							<td th:text="${curso.faculdade.sigla}"></td>
+							<td th:text="${curso.faculdade.sigla}" style="vertical-align: middle;"></td>
 							<td class="text-center" style="vertical-align: middle;" sec:authorize="hasRole('ADMIN')">
 								<button type="button" class="btn btn-danger btn-xs btn-block btn-active" >
 									<i	class="fa fa-trash"	style="cursor: pointer"	
