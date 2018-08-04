@@ -11,7 +11,8 @@ public enum Periodos {
 	SETIMO(7,"7º"),
 	OITAVO(8,"8º"),
 	NONO(9,"9º"),
-	DECIMO(10,"10º");
+	DECIMO(10,"10º"),
+	CONCLUIDO(11, "0º");
 	
 	private int cod;
 	private String descricao;

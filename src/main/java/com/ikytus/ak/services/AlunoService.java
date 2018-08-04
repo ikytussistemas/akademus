@@ -88,7 +88,7 @@ public class AlunoService implements AbstractService<Aluno> {
 		if (!aluno.getSenha().trim().isEmpty()) {
 			aluno.setSenha(pe.encode(aluno.getSenha()));
 		} else {
-			aluno.setSenha(pe.encode(aluno.getMatricula()));
+			aluno.setSenha(pe.encode(aluno.getMatricula())); // senha ao editar = matricula
 		}
 		aluno.setTipo(TipoUsuario.ALUNO);
 		if (!aluno.getPerfis().contains(Perfil.ALUNO)) {
