@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Implementation-Title: akademus
 Implementation-Version: 0.0.1
-Built-By: franz
+Built-By: SYSTEM
 Implementation-Vendor-Id: com.ikytus
-Build-Jdk: 1.8.0_162
+Build-Jdk: 1.8.0_181
 Implementation-URL: http://projects.spring.io/spring-boot/akademus/
 Created-By: Maven Integration for Eclipse
 Implementation-Vendor: Pivotal Software, Inc.

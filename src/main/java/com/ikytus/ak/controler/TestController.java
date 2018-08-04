@@ -78,7 +78,7 @@ public class TestController {
 					al.addPerfil(Perfil.ALUNO);
 					repal.save(al);
 				};
-			
+		
 				/*System.out.println("código: "+ dados[0]+" nome: " + dados[7] + " e o RA: " + dados[6] +" email: " + dados[2] + " Curso: " + curso.getNome() +" Faculdade: " + curso.getFaculdade().getNome() + dados[4]);*/
 			}
 		}
@@ -174,6 +174,10 @@ public class TestController {
 		scanner.close();
 		atributos.addFlashAttribute("mensagem","Upload completo!");				
 		return new ModelAndView("redirect:/testes");
+	}
+	
+	public Integer somar(int numb1, int numb2) {
+		return numb1 + numb2;
 	}
 
 }
