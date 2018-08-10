@@ -222,7 +222,7 @@
 							<tbody>
 								<tr th:each="estagio : ${estagios}">
 									<td th:text="${estagio.turma.semestre}" data-label="Semestre"></td>
-									<td th:text="${estagio.turma.tipoEstagio}" data-label="Tipo"></td>
+									<td th:text="|${estagio.turma.tipoEstagio} - ${estagio.turma.dia} - ${estagio.turma.horario}|" data-label="Tipo"></td>
 									<td th:text="${estagio.dp}" data-label="DP"></td>
 									<td th:text="${estagio.nota}" data-label="Nota Final"></td>
 									<td th:text="${estagio.situacao}" data-label="Situação"></td>
