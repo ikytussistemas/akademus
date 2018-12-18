@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Implementation-Title: akademus
 Implementation-Version: 0.0.1
-Built-By: SYSTEM
+Built-By: franz
 Implementation-Vendor-Id: com.ikytus
 Build-Jdk: 1.8.0_181
 Implementation-URL: http://projects.spring.io/spring-boot/akademus/
